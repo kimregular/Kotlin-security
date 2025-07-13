@@ -1,0 +1,33 @@
+### sign-up
+POST http://localhost:8080/api/member/sign-up
+Content-Type: application/json
+
+{
+  "loginId" : "tester",
+  "password" : "123123123",
+  "name" : "tester",
+  "birthDate" : "2000-01-01",
+  "gender" : "MAN",
+  "email": "test@test.com"
+}
+
+### sign-up fail
+POST http://localhost:8080/api/member/sign-up
+Content-Type: application/json
+
+{
+  "loginId" : "fail",
+  "password" : "123123123",
+  "name" : "tester",
+  "birthDate" : "2000-01",
+  "gender" : "ee",
+  "email": "testtest.com"
+}
+
+### sign-up fail
+POST http://localhost:8080/api/member/sign-up
+Content-Type: application/json
+
+{
+
+}

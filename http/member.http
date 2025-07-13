@@ -31,3 +31,30 @@ Content-Type: application/json
 {
 
 }
+
+### sign-in
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+  "loginId" : "tester",
+  "password" : "123123123"
+}
+
+> {%
+    client.global.set("auth", response.body.data.accessToken);
+ %}
+
+### sign-in fail
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+  "loginId" : "tesster",
+  "password" : "123123123"
+}
+
+### myInfo
+GET http://localhost:8080/api/member/info/1
+Content-Type: application/json
+Authorization: Bearer {{auth}}

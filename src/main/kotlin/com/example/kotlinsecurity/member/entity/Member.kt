@@ -1,13 +1,16 @@
 package com.example.kotlinsecurity.member.entity
 
 import com.example.kotlinsecurity.common.status.Gender
+import com.example.kotlinsecurity.member.dto.MemberResponse
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
+import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import jakarta.persistence.Temporal
 import jakarta.persistence.TemporalType
@@ -43,4 +46,14 @@ class Member(
 
     @Column(nullable = false, length = 30)
     var email: String,
-)
+) {
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    val memberRole: List<MemberRole>? = null
+
+    private fun LocalDate.formatDate(): String = this.toString()
+
+    fun toDto(): MemberResponse =
+        MemberResponse(id!!, loginId, name, birthDate.formatDate(), gender.desc, email)
+
+}
